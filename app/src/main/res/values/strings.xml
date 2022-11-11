@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">MathApp</string>
+    <string name="UserAnswer">Answer</string>
+    <string name="CheckButton">Ok</string>
+    <string name="RoundView">Round %1$s correct Answers %2$s</string>
+    <drawable name="apple"></drawable>
+
+
+
+
+
+
 </resources>

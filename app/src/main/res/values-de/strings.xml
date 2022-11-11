@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MathApp</string>
+    <string name="UserAnswer">Antwort</string>
+    <string name="CheckButton">Ok</string>
+    <string name="RoundView">Runde %1$s korrekte Antowrten: %2$s</string>
+
+
+</resources>

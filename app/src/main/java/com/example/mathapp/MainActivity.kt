@@ -3,19 +3,22 @@ package com.example.mathapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-
     lateinit var questionTextView: TextView
     lateinit var answerView: EditText
     var firstNumber = 0
     var secondNumber = 0
     var thirdNumber = 0
+    var wrongAnswerAddtion = 0
+    var wrongAnswerMultiplication = 0
+    var wrongAnswerDivision = 0
+    var wrongAnswerSubstraction = 0
+
     var numberForMathfunktion = 0
     var correctAnswer = 0
     lateinit var roundWinCounter: TextView
@@ -23,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     var question = ""
 
     var rounds = 0
-    var rightAnswers = 0
+    var rightAnswersCounter = 0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,6 +34,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         roundWinCounter = findViewById(R.id.roundNWinstcounter)
+
+        //intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
 
 
         questionTextView = findViewById(R.id.textView)
@@ -41,16 +46,14 @@ class MainActivity : AppCompatActivity() {
 
             checkAnswerAndStartAnswerActivity()
 
-
         }
-
 
     }
 
     override fun onResume() {
         super.onResume()
         rounds++
-        roundWinCounter.text = "Round $rounds"
+     roundWinCounter.text = getString(R.string.RoundView,rounds.toString(),rightAnswersCounter.toString())
         answerView.setText("")
         setNewQuestion()
 
@@ -67,18 +70,34 @@ class MainActivity : AppCompatActivity() {
             4 -> correctAnswer = thirdNumber / secondNumber
         }
 
+        // om man svara fel 5 ggr på en funktion
+
 
         var answeredCorrect = false
 
 
         if (answer == correctAnswer) {
             answeredCorrect = true
+          rightAnswersCounter++
+        } else  {
+            answeredCorrect = false
+                when (numberForMathfunktion){
+                    1-> wrongAnswerAddtion++
+                    2-> wrongAnswerSubstraction++
+                    3-> wrongAnswerMultiplication++
+                    4-> wrongAnswerDivision++
+                }
         }
+
+
 
         val intent = Intent(this, AnswerActivity::class.java)
         intent.putExtra("answeredCorrect", answeredCorrect)
         intent.putExtra("questionInQuestion", question)
         intent.putExtra("correction",correctAnswer.toString())
+        intent.putExtra("firstN",firstNumber)
+        intent.putExtra("secondN",secondNumber)
+        //intent.putExtra( "firstnumb", firstNumber)
 
 
         startActivity(intent)
@@ -89,6 +108,8 @@ class MainActivity : AppCompatActivity() {
         // kanske mer funktioner (kanske slumpa fram -
         //sks sen börjar om
 
+
+        // sen kolla hur man får bort satt det synst
 
     }
 
@@ -102,7 +123,6 @@ class MainActivity : AppCompatActivity() {
 
         // if sats random tecken 1=+ 2= - 3= / och 4=*
 
-
         question = when (numberForMathfunktion) {
 
             1 -> "$firstNumber + $secondNumber"
@@ -114,8 +134,6 @@ class MainActivity : AppCompatActivity() {
 
         questionTextView?.text = question
 
-        // if sats om numberForMathfun är 4 - first måste firstnumber > secondnummer -
-        // //sen måste det var delbart jämnt annars måste
 
 
     }
