@@ -65,7 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         when (numberForMathfunktion) {
             1 -> correctAnswer = firstNumber + secondNumber
-            2 -> correctAnswer = firstNumber - secondNumber
+            2 ->  if(firstNumber >= secondNumber){correctAnswer =firstNumber-secondNumber} else { correctAnswer = secondNumber - firstNumber}
             3 -> correctAnswer = firstNumber * secondNumber
             4 -> correctAnswer = thirdNumber / secondNumber
         }
@@ -97,6 +97,7 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("correction",correctAnswer.toString())
         intent.putExtra("firstN",firstNumber)
         intent.putExtra("secondN",secondNumber)
+        intent.putExtra("mathfunktion",numberForMathfunktion)
         //intent.putExtra( "firstnumb", firstNumber)
 
 
@@ -126,7 +127,9 @@ class MainActivity : AppCompatActivity() {
         question = when (numberForMathfunktion) {
 
             1 -> "$firstNumber + $secondNumber"
-            2 -> "$firstNumber - $secondNumber"
+            2 ->if(firstNumber >= secondNumber){"$firstNumber - $secondNumber"}
+            else { "$secondNumber - $firstNumber"}
+
             3 -> "$firstNumber * $secondNumber"
             4 ->  "$thirdNumber / $secondNumber"
             else -> ""

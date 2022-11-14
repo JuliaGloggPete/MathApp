@@ -133,9 +133,11 @@
         android:id="@+id/left9"
         android:layout_width="32dp"
         android:layout_height="33dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="204dp"
         android:layout_marginEnd="248dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/left8"
         app:layout_constraintTop_toBottomOf="@+id/rightAnswer" />
 
     <ImageView
@@ -174,18 +176,20 @@
         android:id="@+id/left6"
         android:layout_width="32dp"
         android:layout_height="33dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="156dp"
         android:layout_marginEnd="248dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/left5"
         app:layout_constraintTop_toBottomOf="@+id/rightAnswer" />
 
     <ImageView
         android:id="@+id/left4"
-        android:layout_width="32dp"
-        android:layout_height="33dp"
+        android:layout_width="35dp"
+        android:layout_height="29dp"
         android:layout_marginTop="12dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/left1" />
 
@@ -224,6 +228,8 @@
         android:layout_width="32dp"
         android:layout_height="33dp"
         android:layout_marginTop="112dp"
+        android:layout_marginBottom="13dp"
+        app:layout_constraintBottom_toTopOf="@+id/left4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.044"
         app:layout_constraintStart_toStartOf="parent"
@@ -233,9 +239,23 @@
         android:id="@+id/left3"
         android:layout_width="32dp"
         android:layout_height="33dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="112dp"
         android:layout_marginEnd="248dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/left2"
         app:layout_constraintTop_toBottomOf="@+id/rightAnswer" />
+
+    <Button
+        android:id="@+id/multiplicationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="104dp"
+        android:text="See the tabell"
+        android:textColor="@color/white"
+        app:iconTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AnswerView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

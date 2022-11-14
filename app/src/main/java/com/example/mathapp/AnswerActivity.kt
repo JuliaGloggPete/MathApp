@@ -1,9 +1,12 @@
 package com.example.mathapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils.indexOf
 import android.util.Log
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.TextView
 
@@ -74,6 +77,7 @@ class AnswerActivity : AppCompatActivity() {
         ImageArrayList.add(7,image8)
         ImageArrayList.add(8,image9)
         ImageArrayList.add(9,image10)
+
         val leftImageArrayList: ArrayList<ImageView> = ArrayList<ImageView>(10)
         leftImageArrayList.add(0,image11)
         leftImageArrayList.add(1,image12)
@@ -87,207 +91,97 @@ class AnswerActivity : AppCompatActivity() {
         leftImageArrayList.add(9,image20)
 
 
+
         val answeredCorrect = intent.getBooleanExtra("answeredCorrect", false)
         Log.d("HHH", "Rätt $answeredCorrect")
         val question = intent.getStringExtra("questionInQuestion")
         val rightAnswer = intent.getStringExtra("correction")
         val firstnumber = intent.getIntExtra("firstN", 0)
         val secondnumber = intent.getIntExtra("secondN",0)
+        val mathFunktion = intent.getIntExtra("mathfunktion",0)
+
+
+
+        // if rätt kan jag sätta att button är bara back
+
+
         // image1.setBackgroundResource(R.drawable.tomatoe)
         if (answeredCorrect) {
             resultView.text = "Rääätt"
         } else {
             resultView.text = "Tyvärr fel"
             rightAnswerView.text = "$question = $rightAnswer"
+            if(mathFunktion==3){
+
+                val intent = Intent(this, MultiplicationActivity::class.java)
+
+            }
+
+            if(mathFunktion == 1){
             var i = 0
-            var j = 0
            while ( i< firstnumber)   {
-       if( i < firstnumber)
+
                         ImageArrayList.get(i).setBackgroundResource(R.drawable.tomatoe)
                       i++
                 }
+            var j = 0
+            while ( j< secondnumber)   {
 
-
-            /*while ( j< secondnumber)   {
-
-
-                    if( j < secondnumber)
-                        ImageArrayList.get(j).setBackgroundResource(R.drawable.tomatoe)
-                    i++
-                } */
-
-
-
-            // eller for (item in arrayList){ if (index =< firstnumber-1}
-
-
-
-
-           /* if (firstnumber == 1) {
-                image1.setBackgroundResource(R.drawable.tomatoe)
+                        leftImageArrayList.get(j).setBackgroundResource(R.drawable.tomatoe)
+                    j++
+                }
             }
-            if (firstnumber == 2) {
-                image1.setBackgroundResource(R.drawable.tomatoe)
-                image2.setBackgroundResource(R.drawable.tomatoe)
-            }
-            if (firstnumber == 3) {
-                image1.setBackgroundResource(R.drawable.tomatoe)
-                image2.setBackgroundResource(R.drawable.tomatoe)
-                image3.setBackgroundResource(R.drawable.tomatoe)
-            }
-            if (firstnumber == 4) {
-                image1.setBackgroundResource(R.drawable.tomatoe)
-                image2.setBackgroundResource(R.drawable.tomatoe)
-                image3.setBackgroundResource(R.drawable.tomatoe)
-                image4.setBackgroundResource(R.drawable.tomatoe)
-            }
-            if (firstnumber == 5) {
-                image1.setBackgroundResource(R.drawable.tomatoe)
-                image2.setBackgroundResource(R.drawable.tomatoe)
-                image3.setBackgroundResource(R.drawable.tomatoe)
-                image5.setBackgroundResource(R.drawable.tomatoe)
-                image4.setBackgroundResource(R.drawable.tomatoe)
-            }
-            if (firstnumber == 6) {
-                image1.setBackgroundResource(R.drawable.tomatoe)
-                image2.setBackgroundResource(R.drawable.tomatoe)
-                image3.setBackgroundResource(R.drawable.tomatoe)
-                image5.setBackgroundResource(R.drawable.tomatoe)
-                image4.setBackgroundResource(R.drawable.tomatoe)
-                image6.setBackgroundResource(R.drawable.tomatoe)
-            }
-            if (firstnumber == 7) {
-                image1.setBackgroundResource(R.drawable.tomatoe)
-                image2.setBackgroundResource(R.drawable.tomatoe)
-                image3.setBackgroundResource(R.drawable.tomatoe)
-                image5.setBackgroundResource(R.drawable.tomatoe)
-                image4.setBackgroundResource(R.drawable.tomatoe)
-                image6.setBackgroundResource(R.drawable.tomatoe)
-                image7.setBackgroundResource(R.drawable.tomatoe)
 
+            if(mathFunktion == 2){
+                var i = 0
+                if (firstnumber>secondnumber){
+                  val  result = firstnumber - secondnumber
+                while ( i< result)   {
+                ImageArrayList.get(i).setBackgroundResource(R.drawable.tomatoe)
+                i++
             }
-            if (firstnumber == 8) {
-                image1.setBackgroundResource(R.drawable.tomatoe)
-                image2.setBackgroundResource(R.drawable.tomatoe)
-                image3.setBackgroundResource(R.drawable.tomatoe)
-                image5.setBackgroundResource(R.drawable.tomatoe)
-                image4.setBackgroundResource(R.drawable.tomatoe)
-                image6.setBackgroundResource(R.drawable.tomatoe)
-                image7.setBackgroundResource(R.drawable.tomatoe)
-                image8.setBackgroundResource(R.drawable.tomatoe)
-            }
-            if (firstnumber == 9) {
-                image1.setBackgroundResource(R.drawable.tomatoe)
-                image2.setBackgroundResource(R.drawable.tomatoe)
-                image3.setBackgroundResource(R.drawable.tomatoe)
-                image5.setBackgroundResource(R.drawable.tomatoe)
-                image4.setBackgroundResource(R.drawable.tomatoe)
-                image6.setBackgroundResource(R.drawable.tomatoe)
-                image7.setBackgroundResource(R.drawable.tomatoe)
-                image8.setBackgroundResource(R.drawable.tomatoe)
-                image9.setBackgroundResource(R.drawable.tomatoe)
-            }
-            if (firstnumber == 10) {
-                image1.setBackgroundResource(R.drawable.tomatoe)
-                image2.setBackgroundResource(R.drawable.tomatoe)
-                image3.setBackgroundResource(R.drawable.tomatoe)
-                image5.setBackgroundResource(R.drawable.tomatoe)
-                image4.setBackgroundResource(R.drawable.tomatoe)
-                image6.setBackgroundResource(R.drawable.tomatoe)
-                image7.setBackgroundResource(R.drawable.tomatoe)
-                image8.setBackgroundResource(R.drawable.tomatoe)
-                image9.setBackgroundResource(R.drawable.tomatoe)
-                image10.setBackgroundResource(R.drawable.tomatoe)
-            }
-            if (secondnumber == 10) {
+            var j = 0
+            while ( j< secondnumber)   {
 
+                leftImageArrayList.get(j).setBackgroundResource(R.drawable.notomato)
+                j++
+            }}
+                else { var i = 0
+                    val result = secondnumber-firstnumber
 
-                image11.setBackgroundResource(R.drawable.tomatoe)
-                image12.setBackgroundResource(R.drawable.tomatoe)
-                image13.setBackgroundResource(R.drawable.tomatoe)
-                image14.setBackgroundResource(R.drawable.tomatoe)
-                image15.setBackgroundResource(R.drawable.tomatoe)
-                image16.setBackgroundResource(R.drawable.tomatoe)
-                image17.setBackgroundResource(R.drawable.tomatoe)
-                image18.setBackgroundResource(R.drawable.tomatoe)
-                image19.setBackgroundResource(R.drawable.tomatoe)
-                image20.setBackgroundResource(R.drawable.tomatoe)
+                        while ( i< result)   {
+                            ImageArrayList.get(i).setBackgroundResource(R.drawable.tomatoe)
+                            i++
+                        }
+                        var j = 0
+                        while ( j< firstnumber)   {
 
-
-            }
-            if (secondnumber == 9) {
-                image11.setBackgroundResource(R.drawable.tomatoe)
-                image12.setBackgroundResource(R.drawable.tomatoe)
-                image13.setBackgroundResource(R.drawable.tomatoe)
-                image14.setBackgroundResource(R.drawable.tomatoe)
-                image15.setBackgroundResource(R.drawable.tomatoe)
-                image16.setBackgroundResource(R.drawable.tomatoe)
-                image17.setBackgroundResource(R.drawable.tomatoe)
-                image18.setBackgroundResource(R.drawable.tomatoe)
-                image19.setBackgroundResource(R.drawable.tomatoe)
-
-            }
-           if (secondnumber == 8) {
-                image11.setBackgroundResource(R.drawable.tomatoe)
-                image12.setBackgroundResource(R.drawable.tomatoe)
-                image13.setBackgroundResource(R.drawable.tomatoe)
-                image14.setBackgroundResource(R.drawable.tomatoe)
-                image15.setBackgroundResource(R.drawable.tomatoe)
-                image16.setBackgroundResource(R.drawable.tomatoe)
-                image17.setBackgroundResource(R.drawable.tomatoe)
-                image18.setBackgroundResource(R.drawable.tomatoe)
-
-            }
-            if (secondnumber == 7) {
-                image11.setBackgroundResource(R.drawable.tomatoe)
-                image12.setBackgroundResource(R.drawable.tomatoe)
-                image13.setBackgroundResource(R.drawable.tomatoe)
-                image14.setBackgroundResource(R.drawable.tomatoe)
-                image15.setBackgroundResource(R.drawable.tomatoe)
-                image16.setBackgroundResource(R.drawable.tomatoe)
-                image17.setBackgroundResource(R.drawable.tomatoe)
-
-            }
-            if (secondnumber == 6) {
-                image11.setBackgroundResource(R.drawable.tomatoe)
-                image12.setBackgroundResource(R.drawable.tomatoe)
-                image13.setBackgroundResource(R.drawable.tomatoe)
-                image14.setBackgroundResource(R.drawable.tomatoe)
-                image15.setBackgroundResource(R.drawable.tomatoe)
-                image16.setBackgroundResource(R.drawable.tomatoe)
-            }
-            if (secondnumber == 5) {
-                image11.setBackgroundResource(R.drawable.tomatoe)
-                image12.setBackgroundResource(R.drawable.tomatoe)
-                image13.setBackgroundResource(R.drawable.tomatoe)
-                image14.setBackgroundResource(R.drawable.tomatoe)
-                image15.setBackgroundResource(R.drawable.tomatoe)
-            }
-            if (secondnumber == 4) {
-                image11.setBackgroundResource(R.drawable.tomatoe)
-                image12.setBackgroundResource(R.drawable.tomatoe)
-                image13.setBackgroundResource(R.drawable.tomatoe)
-                image14.setBackgroundResource(R.drawable.tomatoe)
-            }
-            if (secondnumber == 3) {
-                image11.setBackgroundResource(R.drawable.tomatoe)
-                image12.setBackgroundResource(R.drawable.tomatoe)
-                image13.setBackgroundResource(R.drawable.tomatoe)
-
-            }
-               if (secondnumber == 2) {
-                image11.setBackgroundResource(R.drawable.tomatoe)
-                image12.setBackgroundResource(R.drawable.tomatoe)
-            }
-                  if (secondnumber == 1) {
-                image11.setBackgroundResource(R.drawable.tomatoe)
-
-            }*/
+                            leftImageArrayList.get(j).setBackgroundResource(R.drawable.notomato)
+                            j++
+                        }
 
 
 
 
-        }}
+                }
+
+
+        }
+
+
+        }
+
+        //AnimationUtils.loadAnimation(applicationContext,R.anim.fade_in);
+
+        /// + är löst - minus - först måste jag ändra till att det inte kan blir minus belopp,
+        // sen antingen räknar jag i hop och sätta alla äpple och stryka över de som ska bort
+        // det kan jag göra genom att byta äpple bilden med ett överstrykit äpple
+        // hade varit kul om jag kunde fada out åpplen - jag vill dock att alla åpplen dvs tomater syns
+        // samanhängande.... så egentligen vil ja ju sen backifrån ta bort - eller egentligen funkar det framifrån med
+            // ....
+
+
+    }
 
     private fun setFeatureDrawable(i: Int, tomatoe: Int) {
 
